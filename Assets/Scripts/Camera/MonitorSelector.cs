@@ -1,0 +1,96 @@
+using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+
+public class MonitorSelector : MonoBehaviour
+{
+    [Header("Monitor Selection")]
+    public float maxSelectDistance = 10f;
+    public Material highlightMaterial;
+
+    [Header("Zoom Settings")]
+    public Camera mainCamera;
+    public float zoomFOV = 30f;
+    public float zoomSpeed = 5f;
+
+    private Material originalMaterial;
+    private GameObject currentLookedAtMonitor;
+    private float originalFOV;
+    private bool isZooming = false;
+
+    void Start()
+    {
+        if (mainCamera == null)
+            mainCamera = Camera.main;
+
+        originalFOV = mainCamera.fieldOfView;
+    }
+
+    void Update()
+    {
+        Ray ray = new Ray(transform.position, transform.forward);
+        RaycastHit hit;
+
+        isZooming = false;
+
+        if (Physics.Raycast(ray, out hit, maxSelectDistance))
+        {
+            if (hit.collider.CompareTag("Monitor"))
+            {
+                GameObject monitor = hit.collider.gameObject;
+
+                if (currentLookedAtMonitor != monitor)
+                {
+                    ClearHighlight();
+
+                    Renderer rend = monitor.GetComponent<Renderer>();
+                    if (rend != null)
+                    {
+                        originalMaterial = rend.material;
+                        rend.material = highlightMaterial;
+                    }
+                    currentLookedAtMonitor = monitor;
+                }
+
+                isZooming = true;
+
+                // Handle input to select the monitor
+                if (Keyboard.current.eKey.wasPressedThisFrame || Mouse.current.leftButton.wasPressedThisFrame)
+                {
+                    MonitorLevel level = monitor.GetComponent<MonitorLevel>();
+                    if (level != null)
+                    {
+                        Debug.Log("Loading scene: " + level.sceneName);
+                        SceneManager.LoadScene(level.sceneName);
+                    }
+                    else
+                    {
+                        Debug.LogWarning("MonitorLevel component missing on: " + monitor.name);
+                    }
+                }
+
+                return;
+            }
+        }
+
+        ClearHighlight();
+
+        // Smooth zoom effect
+        float targetFOV = isZooming ? zoomFOV : originalFOV;
+        mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, targetFOV, Time.deltaTime * zoomSpeed);
+    }
+
+    void ClearHighlight()
+    {
+        if (currentLookedAtMonitor != null)
+        {
+            Renderer rend = currentLookedAtMonitor.GetComponent<Renderer>();
+            if (rend != null && originalMaterial != null)
+            {
+                rend.material = originalMaterial;
+            }
+            currentLookedAtMonitor = null;
+            originalMaterial = null;
+        }
+    }
+}
