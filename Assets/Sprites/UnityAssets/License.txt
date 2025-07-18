@@ -1,9 +1,9 @@
 	
 
-	City Kit Commercial (2.0)
+	Prototype Kit (1.0)
 
 	Created/distributed by Kenney (www.kenney.nl)
-	Creation date: 17-05-2025 13:29
+	Creation date: 28-08-2024 09:59
 	
 			------------------------------
 
@@ -23,6 +23,6 @@
 	
 	Follow on social media for updates:
 
-	• Twitter:	 twitter.com/KenneyNL
-	• BlueSky:	 kenney.bsky.social
+	• Twitter:   twitter.com/KenneyNL
 	• Instagram: instagram.com/kenney_nl
+	• Mastodon:  mastodon.gamedev.place/@kenney
