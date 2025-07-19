@@ -57,7 +57,7 @@ public class SuperheroSelector : MonoBehaviour
         if (lastHovered != null)
         {
             mindController.Possess(lastHovered);
-            ClearHighlight(); // Clear green highlight on possess, yellow applied in MindController
+            ClearHighlight();
         }
     }
 
@@ -79,7 +79,7 @@ public class SuperheroSelector : MonoBehaviour
             for (int j = 0; j < greenMats.Length; j++)
             {
                 greenMats[j] = new Material(renderers[i].materials[j]);
-                greenMats[j].color = Color.green;
+                greenMats[j].color = Color.violet; // this line changes color
             }
             renderers[i].materials = greenMats;
         }
