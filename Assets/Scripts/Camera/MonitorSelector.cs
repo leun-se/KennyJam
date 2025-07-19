@@ -6,15 +6,15 @@ public class MonitorSelector : MonoBehaviour
 {
     [Header("Monitor Selection")]
     public float maxSelectDistance = 10f;
-    public Material highlightMaterial;
 
     [Header("Zoom Settings")]
     public Camera mainCamera;
     public float zoomFOV = 30f;
     public float zoomSpeed = 5f;
 
-    private Material originalMaterial;
     private GameObject currentLookedAtMonitor;
+    private Color[] originalColors;
+    private Renderer[] currentRenderers;
     private float originalFOV;
     private bool isZooming = false;
 
@@ -43,12 +43,20 @@ public class MonitorSelector : MonoBehaviour
                 {
                     ClearHighlight();
 
-                    Renderer rend = monitor.GetComponent<Renderer>();
-                    if (rend != null)
+                    // Cache all renderers so we can change their colors
+                    currentRenderers = monitor.GetComponentsInChildren<Renderer>();
+                    originalColors = new Color[currentRenderers.Length];
+
+                    // Change all renderer colors to green highlight
+                    for (int i = 0; i < currentRenderers.Length; i++)
                     {
-                        originalMaterial = rend.material;
-                        rend.material = highlightMaterial;
+                        if (currentRenderers[i].material.HasProperty("_Color"))
+                        {
+                            originalColors[i] = currentRenderers[i].material.color;
+                            currentRenderers[i].material.color = Color.green;
+                        }
                     }
+
                     currentLookedAtMonitor = monitor;
                 }
 
@@ -82,15 +90,20 @@ public class MonitorSelector : MonoBehaviour
 
     void ClearHighlight()
     {
-        if (currentLookedAtMonitor != null)
+        if (currentLookedAtMonitor != null && currentRenderers != null)
         {
-            Renderer rend = currentLookedAtMonitor.GetComponent<Renderer>();
-            if (rend != null && originalMaterial != null)
+            // Restore original colors
+            for (int i = 0; i < currentRenderers.Length; i++)
             {
-                rend.material = originalMaterial;
+                if (currentRenderers[i] != null && currentRenderers[i].material.HasProperty("_Color"))
+                {
+                    currentRenderers[i].material.color = originalColors[i];
+                }
             }
-            currentLookedAtMonitor = null;
-            originalMaterial = null;
         }
+
+        currentLookedAtMonitor = null;
+        currentRenderers = null;
+        originalColors = null;
     }
 }
