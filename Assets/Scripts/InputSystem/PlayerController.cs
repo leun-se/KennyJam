@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,11 +11,22 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody rb;
     private Animator animator;
+    private PlayerControls inputActions;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
+
+        inputActions = new PlayerControls();
+        inputActions.Enable();
+        inputActions.Player.Restart.performed += ctx => RestartLevel();
+    }
+
+    private void OnDestroy()
+    {
+        inputActions.Player.Restart.performed -= ctx => RestartLevel();
+        inputActions.Disable();
     }
 
     public void OnMove(InputValue value)
@@ -39,5 +51,10 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetFloat("Speed", move.magnitude);
         }
+    }
+
+    private void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
