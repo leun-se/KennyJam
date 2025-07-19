@@ -568,6 +568,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &760413261 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9019116996599760118, guid: a745a9627a4da2a4aa9dd32b5c4865fe, type: 3}
+  m_PrefabInstance: {fileID: 6797562031148292323}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &771451085
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2083,6 +2088,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4659993206154448063, guid: 9b858e46e2c4baf419fedc7fccd04411, type: 3}
+      propertyPath: crosshairUI
+      value: 
+      objectReference: {fileID: 760413261}
     - target: {fileID: 7783594725334760694, guid: 9b858e46e2c4baf419fedc7fccd04411, type: 3}
       propertyPath: m_Name
       value: PlayerCamera
