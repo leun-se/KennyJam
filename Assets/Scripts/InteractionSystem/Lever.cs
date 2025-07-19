@@ -1,10 +1,11 @@
 using UnityEngine;
-
+using UnityEngine.Events;
 public class Lever : MonoBehaviour, IInteractable
 {
     [SerializeField] private string _prompt;
     private bool _leverStatus;
     private Animator _anim;
+    [SerializeField] private UnityEvent _event;
 
     public string InteractionPrompt => _prompt;
 
@@ -18,6 +19,7 @@ public class Lever : MonoBehaviour, IInteractable
         {
             Debug.Log(_leverStatus);
             _anim.SetBool("LeverStatus", true);
+            _event.Invoke();
             _leverStatus = !_leverStatus;
             return true;
         }
