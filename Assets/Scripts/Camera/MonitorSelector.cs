@@ -51,7 +51,7 @@ public class MonitorSelector : MonoBehaviour
                         if (currentRenderers[i].material.HasProperty("_Color"))
                         {
                             originalColors[i] = currentRenderers[i].material.color;
-                            currentRenderers[i].material.color = Color.green;
+                            currentRenderers[i].material.color = Color.violet;
                         }
                     }
 

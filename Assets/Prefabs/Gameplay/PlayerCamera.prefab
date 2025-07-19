@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7639147675422260271}
   - component: {fileID: 4659993206154448063}
   - component: {fileID: 7730281973642086716}
+  - component: {fileID: 2695664197790399057}
   m_Layer: 0
   m_Name: PlayerCamera
   m_TagString: MainCamera
@@ -182,3 +183,32 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   mindController: {fileID: 4659993206154448063}
+--- !u!114 &2695664197790399057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7783594725334760694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4fc02aa636d27f4ea67ff84a3b55346, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  screenshotAction:
+    m_Name: Screenshot
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 98451fb7-895b-4207-ab91-2e47f42c04a2
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 7a24f485-f968-466c-979e-e3e40a49e4b2
+      m_Path: <Keyboard>/k
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Screenshot
+      m_Flags: 0
+    m_Flags: 0
