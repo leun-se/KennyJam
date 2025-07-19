@@ -2092,6 +2092,14 @@ PrefabInstance:
       propertyPath: crosshairUI
       value: 
       objectReference: {fileID: 760413261}
+    - target: {fileID: 7639147675422260271, guid: 9b858e46e2c4baf419fedc7fccd04411, type: 3}
+      propertyPath: maxYaw
+      value: -25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7639147675422260271, guid: 9b858e46e2c4baf419fedc7fccd04411, type: 3}
+      propertyPath: minYaw
+      value: -85
+      objectReference: {fileID: 0}
     - target: {fileID: 7783594725334760694, guid: 9b858e46e2c4baf419fedc7fccd04411, type: 3}
       propertyPath: m_Name
       value: PlayerCamera
