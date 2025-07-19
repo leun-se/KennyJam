@@ -2,7 +2,10 @@ using UnityEngine;
 
 public class MindController : MonoBehaviour
 {
+    public GameObject possessionArrowPrefab;
+
     private GameObject currentControlledCharacter;
+    private GameObject currentArrow;
 
     public GameObject CurrentControlledCharacter => currentControlledCharacter;
 
@@ -10,7 +13,7 @@ public class MindController : MonoBehaviour
     {
         return obj == currentControlledCharacter;
     }
-    
+
     public void SetPossessedHighlight(GameObject obj, bool possessed)
     {
         if (obj == null) return;
@@ -34,6 +37,9 @@ public class MindController : MonoBehaviour
             var oldController = currentControlledCharacter.GetComponent<PlayerController>();
             if (oldController != null)
                 oldController.enabled = false;
+
+            if (currentArrow != null)
+                Destroy(currentArrow);
         }
 
         currentControlledCharacter = newCharacter;
@@ -43,6 +49,14 @@ public class MindController : MonoBehaviour
         var newController = currentControlledCharacter.GetComponent<PlayerController>();
         if (newController != null)
             newController.enabled = true;
+
+        if (possessionArrowPrefab != null)
+        {
+            currentArrow = Instantiate(possessionArrowPrefab, currentControlledCharacter.transform);
+
+            currentArrow.transform.localPosition = new Vector3(0, 1.8f, 0);
+            currentArrow.transform.localRotation = Quaternion.identity;
+        }
     }
 
     public void ReturnControlToMind()
@@ -56,6 +70,22 @@ public class MindController : MonoBehaviour
                 controller.enabled = false;
 
             currentControlledCharacter = null;
+        }
+
+        if (currentArrow != null)
+        {
+            Destroy(currentArrow);
+            currentArrow = null;
+        }
+    }
+
+    private void Update()
+    {
+        if (currentArrow != null && Camera.main != null)
+        {
+            Vector3 dir = Camera.main.transform.position - currentArrow.transform.position;
+            dir.y = 0;
+            currentArrow.transform.rotation = Quaternion.LookRotation(-dir);
         }
     }
 }

@@ -31,8 +31,8 @@ public class Interactor : MonoBehaviour
         }
         else
         {
-           if (_interactable != null) _interactable = null;
-           if (_interactionPromptUI.IsDisplayed) _interactionPromptUI.Close();
+            if (_interactable != null) _interactable = null;
+            if (_interactionPromptUI.IsDisplayed) _interactionPromptUI.Close();
         }
 
     }
