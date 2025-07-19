@@ -12,8 +12,8 @@ public class FreeLook : MonoBehaviour
     public float minYaw = -85f;
     public float maxYaw = -25f;
 
-    public float minPitch = -30f;
-    public float maxPitch = 30f;
+    public float minPitch = 15f;
+    public float maxPitch = 50f;
 
     private float initialPitch;
 

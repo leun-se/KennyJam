@@ -45,17 +45,6 @@ public class MindController : MonoBehaviour
         return obj == currentControlledCharacter;
     }
 
-    public void SetPossessedHighlight(GameObject obj, bool possessed)
-    {
-        if (obj == null) return;
-
-        Renderer[] renderers = obj.GetComponentsInChildren<Renderer>();
-        foreach (Renderer rend in renderers)
-        {
-            rend.material.color = possessed ? Color.yellow : Color.white;
-        }
-    }
-
     public void Possess(GameObject newCharacter)
     {
         if (currentControlledCharacter != null || newCharacter == null)
@@ -63,7 +52,6 @@ public class MindController : MonoBehaviour
 
         if (currentControlledCharacter != null)
         {
-            SetPossessedHighlight(currentControlledCharacter, false);
 
             var oldController = currentControlledCharacter.GetComponent<PlayerController>();
             if (oldController != null)
@@ -74,8 +62,6 @@ public class MindController : MonoBehaviour
         }
 
         currentControlledCharacter = newCharacter;
-
-        SetPossessedHighlight(currentControlledCharacter, true);
 
         var newController = currentControlledCharacter.GetComponent<PlayerController>();
         if (newController != null)
@@ -116,7 +102,6 @@ public class MindController : MonoBehaviour
     {
         if (currentControlledCharacter != null)
         {
-            SetPossessedHighlight(currentControlledCharacter, false);
 
             var controller = currentControlledCharacter.GetComponent<PlayerController>();
             if (controller != null)
