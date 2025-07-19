@@ -24,6 +24,13 @@ public class SuperheroSelector : MonoBehaviour
 
     void Update()
     {
+        // Don't allow highlight if someone is possessed
+        if (mindController.CurrentControlledCharacter != null)
+        {
+            ClearHighlight();
+            return;
+        }
+
         Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
         if (Physics.Raycast(ray, out RaycastHit hit, rayDistance, possessableLayer))
         {
@@ -33,15 +40,8 @@ public class SuperheroSelector : MonoBehaviour
             {
                 ClearHighlight();
 
-                if (!mindController.IsPossessed(hitObj))
-                {
-                    HighlightGreen(hitObj);
-                    lastHovered = hitObj;
-                }
-                else
-                {
-                    lastHovered = null;
-                }
+                HighlightGreen(hitObj);
+                lastHovered = hitObj;
             }
         }
         else
@@ -89,7 +89,10 @@ public class SuperheroSelector : MonoBehaviour
         {
             for (int i = 0; i < lastHoveredRenderers.Length; i++)
             {
-                lastHoveredRenderers[i].materials = lastOriginalMaterials[i];
+                if (lastHoveredRenderers[i] != null && lastOriginalMaterials != null && lastOriginalMaterials.Length > i)
+                {
+                    lastHoveredRenderers[i].materials = lastOriginalMaterials[i];
+                }
             }
         }
 
