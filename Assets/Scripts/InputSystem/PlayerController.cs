@@ -1,47 +1,43 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
-    private PlayerControls controls;
     private Vector2 moveInput;
 
     public float moveSpeed = 5f;
     public float rotationSpeed = 10f;
 
     private Rigidbody rb;
+    private Animator animator;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        controls = new PlayerControls();
-
-        controls.Player.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
-        controls.Player.Move.canceled += ctx => moveInput = Vector2.zero;
+        animator = GetComponentInChildren<Animator>();
     }
 
-    private void OnEnable()
+    public void OnMove(InputValue value)
     {
-        controls.Enable();
-    }
-
-    private void OnDisable()
-    {
-        controls.Disable();
+        moveInput = value.Get<Vector2>();
     }
 
     private void FixedUpdate()
     {
-        Vector3 move = new Vector3(moveInput.x, 0, moveInput.y);
+        Vector3 move = new Vector3(moveInput.x, 0f, moveInput.y);
 
-        if (move.sqrMagnitude > 0.01f)
+        if (move.magnitude > 0.1f)
         {
-            Vector3 targetPos = rb.position + move * moveSpeed * Time.fixedDeltaTime;
-            rb.MovePosition(targetPos);
+            Vector3 newPos = rb.position + move * moveSpeed * Time.fixedDeltaTime;
+            rb.MovePosition(newPos);
 
-            Quaternion targetRot = Quaternion.LookRotation(move);
+            Quaternion targetRot = Quaternion.LookRotation(-move);
             rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRot, rotationSpeed * Time.fixedDeltaTime));
+        }
+
+        if (animator != null)
+        {
+            animator.SetFloat("Speed", move.magnitude);
         }
     }
 }
