@@ -24,7 +24,7 @@ public class SuperheroSelector : MonoBehaviour
 
     void Update()
     {
-        Ray ray = new Ray(transform.position, transform.forward);
+        Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
         if (Physics.Raycast(ray, out RaycastHit hit, rayDistance, possessableLayer))
         {
             GameObject hitObj = hit.collider.gameObject;
