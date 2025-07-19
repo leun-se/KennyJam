@@ -5,8 +5,8 @@ public class FixedPositionMouseLook : MonoBehaviour
 {
     public float lookSensitivity = 0.1f;
 
-    private float xRotation = 0f; // vertical pitch
-    private float yRotation = 0f; // horizontal yaw
+    private float xRotation = 0f;
+    private float yRotation = 0f;
 
     void Start()
     {

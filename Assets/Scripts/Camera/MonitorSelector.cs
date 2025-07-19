@@ -43,11 +43,9 @@ public class MonitorSelector : MonoBehaviour
                 {
                     ClearHighlight();
 
-                    // Cache all renderers so we can change their colors
                     currentRenderers = monitor.GetComponentsInChildren<Renderer>();
                     originalColors = new Color[currentRenderers.Length];
 
-                    // Change all renderer colors to green highlight
                     for (int i = 0; i < currentRenderers.Length; i++)
                     {
                         if (currentRenderers[i].material.HasProperty("_Color"))
@@ -62,7 +60,6 @@ public class MonitorSelector : MonoBehaviour
 
                 isZooming = true;
 
-                // Handle input to select the monitor
                 if (Keyboard.current.eKey.wasPressedThisFrame || Mouse.current.leftButton.wasPressedThisFrame)
                 {
                     MonitorLevel level = monitor.GetComponent<MonitorLevel>();
@@ -83,7 +80,6 @@ public class MonitorSelector : MonoBehaviour
 
         ClearHighlight();
 
-        // Smooth zoom effect
         float targetFOV = isZooming ? zoomFOV : originalFOV;
         mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, targetFOV, Time.deltaTime * zoomSpeed);
     }
@@ -92,7 +88,6 @@ public class MonitorSelector : MonoBehaviour
     {
         if (currentLookedAtMonitor != null && currentRenderers != null)
         {
-            // Restore original colors
             for (int i = 0; i < currentRenderers.Length; i++)
             {
                 if (currentRenderers[i] != null && currentRenderers[i].material.HasProperty("_Color"))

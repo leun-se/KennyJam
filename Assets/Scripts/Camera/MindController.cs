@@ -10,8 +10,7 @@ public class MindController : MonoBehaviour
     {
         return obj == currentControlledCharacter;
     }
-
-    // Highlights possessed character yellow, or resets color
+    
     public void SetPossessedHighlight(GameObject obj, bool possessed)
     {
         if (obj == null) return;
@@ -28,7 +27,6 @@ public class MindController : MonoBehaviour
         if (newCharacter == null || newCharacter == currentControlledCharacter)
             return;
 
-        // Unpossess previous character
         if (currentControlledCharacter != null)
         {
             SetPossessedHighlight(currentControlledCharacter, false);
