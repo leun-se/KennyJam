@@ -29,12 +29,10 @@ public class SuperheroSelector : MonoBehaviour
         {
             GameObject hitObj = hit.collider.gameObject;
 
-            // Only update highlight if changed object
             if (hitObj != lastHovered)
             {
                 ClearHighlight();
 
-                // Don't highlight if possessed
                 if (!mindController.IsPossessed(hitObj))
                 {
                     HighlightGreen(hitObj);
