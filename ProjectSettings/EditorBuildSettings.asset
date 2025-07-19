@@ -9,11 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MonitorScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-<<<<<<< HEAD
     path: Assets/Scenes/Tester.unity
-=======
-    path: Assets/Scenes/TestLevel.unity
->>>>>>> 242e335412d6ef9934063ba9f1ede5350214e822
     guid: 740defe32a935e440bf8a2b1ee259eba
   - enabled: 1
     path: Assets/Scenes/Level2.unity
