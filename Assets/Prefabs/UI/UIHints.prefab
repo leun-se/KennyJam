@@ -712,6 +712,8 @@ GameObject:
   - component: {fileID: 7684851541065959073}
   - component: {fileID: 3740552270549056028}
   - component: {fileID: 2285956584299899070}
+  - component: {fileID: 2637787820790401288}
+  - component: {fileID: 4388968849484774394}
   m_Layer: 5
   m_Name: UIHints
   m_TagString: Untagged
@@ -806,6 +808,31 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &2637787820790401288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6239738635324583178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 980a44f325924924fab4bcc441c5cdbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeDuration: 0.5
+--- !u!225 &4388968849484774394
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6239738635324583178}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &7630110260918699519
 GameObject:
   m_ObjectHideFlags: 0

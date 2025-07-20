@@ -6,7 +6,7 @@ public class MindController : MonoBehaviour
     [SerializeField] private AudioClip mindControlSoundClip;
     public GameObject possessionArrowPrefab;
     public GameObject crosshairUI;
-    public GameObject uiHint; // Assign this in Inspector
+    public GameObject uiHint; // Assign this in Inspector (make sure it has CanvasGroup + UIHintFade)
 
     private GameObject currentControlledCharacter;
     private GameObject currentArrow;
@@ -17,6 +17,7 @@ public class MindController : MonoBehaviour
     public GameObject CurrentControlledCharacter => currentControlledCharacter;
 
     private FreeLook freeLook;
+    private UIHintFade uiHintFade;
 
     private Vector3 lastPosition;
     private float stationaryTimer = 0f;
@@ -26,11 +27,13 @@ public class MindController : MonoBehaviour
     void Start()
     {
         freeLook = Camera.main.GetComponent<FreeLook>();
+        if (uiHint != null)
+            uiHintFade = uiHint.GetComponent<UIHintFade>();
     }
 
     private void Update()
     {
-        // Return control
+        // Return control to mind with R key
         if (Keyboard.current.rKey.wasPressedThisFrame)
         {
             ReturnControlToMind();
@@ -44,13 +47,13 @@ public class MindController : MonoBehaviour
             currentArrow.transform.rotation = Quaternion.LookRotation(-dir);
         }
 
-        // Zoom camera
+        // Zoom camera orthographic size smoothly
         if (Camera.main != null && Camera.main.orthographic)
         {
             Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, targetOrthoSize, Time.deltaTime * zoomSpeed);
         }
 
-        // Show/hide hint UI based on movement
+        // Show/hide hint UI based on whether player is moving or standing still
         if (currentControlledCharacter != null)
         {
             Vector3 currentPos = currentControlledCharacter.transform.position;
@@ -61,9 +64,9 @@ public class MindController : MonoBehaviour
             {
                 stationaryTimer = 0f;
 
-                if (isHintVisible && uiHint != null)
+                if (isHintVisible && uiHintFade != null)
                 {
-                    uiHint.SetActive(false);
+                    uiHintFade.FadeOut();
                     isHintVisible = false;
                 }
             }
@@ -71,9 +74,9 @@ public class MindController : MonoBehaviour
             {
                 stationaryTimer += Time.deltaTime;
 
-                if (!isHintVisible && stationaryTimer >= timeToShowHint && uiHint != null)
+                if (!isHintVisible && stationaryTimer >= timeToShowHint && uiHintFade != null)
                 {
-                    uiHint.SetActive(true);
+                    uiHintFade.FadeIn();
                     isHintVisible = true;
                 }
             }
@@ -150,10 +153,11 @@ public class MindController : MonoBehaviour
         if (freeLook != null)
             freeLook.allowMouseLook = false;
 
-        // Show hint again when possessing
-        if (uiHint != null)
+        // Show hint immediately when possessing
+        if (uiHintFade != null)
         {
             uiHint.SetActive(true);
+            uiHintFade.FadeIn();
             isHintVisible = true;
             stationaryTimer = 0f;
         }
@@ -194,7 +198,14 @@ public class MindController : MonoBehaviour
 
         if (uiHint != null)
         {
-            uiHint.SetActive(false);
+            if (uiHintFade != null)
+            {
+                uiHintFade.FadeOut();
+            }
+            else
+            {
+                uiHint.SetActive(false);
+            }
             isHintVisible = false;
         }
     }
