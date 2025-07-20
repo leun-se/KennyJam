@@ -59,8 +59,7 @@ public class GuardVision : MonoBehaviour
         {
             if (patrolRotate && patrolAngles.Length > 0)
                 PatrolRotate();
-            else
-                DetectPlayer();
+            DetectPlayer();
             UpdateConeVisibility();
             SetWalkingAnimation(false);
         }
@@ -141,7 +140,8 @@ public class GuardVision : MonoBehaviour
             Transform player = hit.transform;
             Vector3 rayOrigin = transform.position + Vector3.up * 0.25f;
             Vector3 dirToPlayer = (player.position - rayOrigin).normalized;
-            float angle = Vector3.Angle(-transform.forward, dirToPlayer);
+            Vector3 currentFacing = -(transform.rotation * Vector3.forward);
+            float angle = Vector3.Angle(currentFacing, dirToPlayer);
 
             if (angle < viewAngle / 2f)
             {

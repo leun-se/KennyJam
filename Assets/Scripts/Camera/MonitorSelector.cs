@@ -65,18 +65,20 @@ public class MonitorSelector : MonoBehaviour
 
                 isZooming = true;
 
-                if (Keyboard.current.eKey.wasPressedThisFrame || Mouse.current.leftButton.wasPressedThisFrame)
+                MonitorLevel level = monitor.GetComponent<MonitorLevel>();
+                if (level != null)
                 {
-                    MonitorLevel level = monitor.GetComponent<MonitorLevel>();
-                    if (level != null)
+                    bool isCompleted = LevelProgress.IsCompleted(level.sceneName);
+
+                    if (!isCompleted && (Keyboard.current.eKey.wasPressedThisFrame || Mouse.current.leftButton.wasPressedThisFrame))
                     {
                         Debug.Log("Loading scene: " + level.sceneName);
                         SceneManager.LoadScene(level.sceneName);
                     }
-                    else
-                    {
-                        Debug.LogWarning("MonitorLevel component missing on: " + monitor.name);
-                    }
+                }
+                else
+                {
+                    Debug.LogWarning("MonitorLevel component missing on: " + monitor.name);
                 }
 
                 return;
