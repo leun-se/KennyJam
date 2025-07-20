@@ -1,9 +1,12 @@
+using JetBrains.Annotations;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+    //private footsteps steps = new footsteps();
     private Vector2 moveInput;
     public float moveSpeed = 3f;
     public float rotationSpeed = 10f;
@@ -43,12 +46,17 @@ public class PlayerController : MonoBehaviour
 
         if (move.magnitude > 0.1f)
         {
+            //steps.walking();
             Vector3 newPos = rb.position + move * moveSpeed * Time.fixedDeltaTime;
             rb.MovePosition(newPos);
 
             Quaternion targetRot = Quaternion.LookRotation(-move);
             rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRot, rotationSpeed * Time.fixedDeltaTime));
         }
+        //else
+        //{
+        //    steps.doneWalking();
+        //}
 
         if (animator != null)
         {
@@ -69,4 +77,5 @@ public class PlayerController : MonoBehaviour
         if (animator != null)
             animator.SetFloat("Speed", 0f);
     }
+    
 }

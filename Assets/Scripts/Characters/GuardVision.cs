@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(CapsuleCollider))]
 public class GuardVision : MonoBehaviour
 {
+    [SerializeField] private AudioClip footstepSound;
+    [SerializeField] private AudioClip exclamaitionSoundClip;
     private Animator animator;
 
     [Header("Detection Settings")]

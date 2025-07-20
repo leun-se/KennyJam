@@ -73,7 +73,9 @@ public class MindController : MonoBehaviour
             if (currentArrow != null)
                 Destroy(currentArrow);
         }
+
         SoundEffectsManager.instance.PlaySoundFXClip(mindControlSoundClip, transform, 1f);
+
         currentControlledCharacter = newCharacter;
 
         var newController = currentControlledCharacter.GetComponent<PlayerController>();

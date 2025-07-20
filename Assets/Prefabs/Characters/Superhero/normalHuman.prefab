@@ -524,7 +524,7 @@ GameObject:
   - component: {fileID: 8587957646041236140}
   - component: {fileID: 6621962879351199665}
   m_Layer: 3
-  m_Name: NormalHuman
+  m_Name: normalHuman
   m_TagString: Possessable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -640,6 +640,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 805c83ec6b15db64c9347b2788381dd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  footstepSoundClip: {fileID: 8300000, guid: 631c6ef2097cf7546a6504806f398c47, type: 3}
   moveSpeed: 3
   rotationSpeed: 10
   isFrozen: 0
