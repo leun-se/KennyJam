@@ -7,10 +7,17 @@ public class GuardVision : MonoBehaviour
     private Animator animator;
 
     [Header("Detection Settings")]
-    public float viewDistance = 7f;
+    public float viewDistance = 1f;
     public float viewAngle = 90f;
     public LayerMask playerLayer;
     public LayerMask obstacleMask;
+
+    [Header("Rotation Settings")]
+    public bool patrolRotate = false;
+    public float rotationSpeed = 2f;
+    public float waitTimeAtEachRotation = 2f;
+    public float[] patrolAngles = { 0f, 90f, 180f, 270f };
+
 
     [Header("References")]
     public GameObject exclamationPoint;
@@ -25,9 +32,13 @@ public class GuardVision : MonoBehaviour
 
     private CapsuleCollider guardCollider;
 
+    private int currentPatrolIndex = 0;
+    private float waitTimer = 0f;
+    private bool isRotating = false;
+
     private void Start()
     {
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
         guardCollider = GetComponent<CapsuleCollider>();
 
         if (exclamationPoint != null)
@@ -45,13 +56,42 @@ public class GuardVision : MonoBehaviour
     {
         if (!isChasing)
         {
-            DetectPlayer();
+            if (patrolRotate && patrolAngles.Length > 0)
+                PatrolRotate();
+            else
+                DetectPlayer();
+
             SetWalkingAnimation(false);
         }
         else
         {
             ChasePlayer();
             SetWalkingAnimation(true);
+        }
+    }
+
+    private void PatrolRotate()
+    {
+        if (isRotating)
+        {
+            float targetAngle = patrolAngles[currentPatrolIndex];
+            Quaternion targetRotation = Quaternion.Euler(0f, targetAngle, 0f);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+            if (Quaternion.Angle(transform.rotation, targetRotation) < 1f)
+            {
+                isRotating = false;
+                waitTimer = 0f;
+            }
+        }
+        else
+        {
+            waitTimer += Time.deltaTime;
+            if (waitTimer >= waitTimeAtEachRotation)
+            {
+                currentPatrolIndex = (currentPatrolIndex + 1) % patrolAngles.Length;
+                isRotating = true;
+            }
         }
     }
 
