@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -45,5 +47,16 @@ public class GameManager : MonoBehaviour
     {
         SoundEffectsManager.instance.PlaySoundFXClip(LevelCompleteSoundClip, transform, 1f);
         Debug.Log("Level Complete!");
+
+        string currentScene = SceneManager.GetActiveScene().name;
+        LevelProgress.MarkCompleted(currentScene);
+
+        StartCoroutine(ReturnToMonitorSceneAfterDelay(2f));
+    }
+
+    private IEnumerator ReturnToMonitorSceneAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene("MonitorScene");
     }
 }
