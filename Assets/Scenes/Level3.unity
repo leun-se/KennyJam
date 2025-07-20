@@ -1731,8 +1731,24 @@ PrefabInstance:
       value: -19.76
       objectReference: {fileID: 0}
     - target: {fileID: 5003054659431613604, guid: 0937b7b356359c6438b1c00b133ab359, type: 3}
+      propertyPath: m_ClearFlags
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5003054659431613604, guid: 0937b7b356359c6438b1c00b133ab359, type: 3}
       propertyPath: orthographic size
-      value: 6.9
+      value: 6.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 5003054659431613604, guid: 0937b7b356359c6438b1c00b133ab359, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0.7735849
+      objectReference: {fileID: 0}
+    - target: {fileID: 5003054659431613604, guid: 0937b7b356359c6438b1c00b133ab359, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0.49038306
+      objectReference: {fileID: 0}
+    - target: {fileID: 5003054659431613604, guid: 0937b7b356359c6438b1c00b133ab359, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0.31016377
       objectReference: {fileID: 0}
     - target: {fileID: 6457042105391491544, guid: 0937b7b356359c6438b1c00b133ab359, type: 3}
       propertyPath: maxYaw
