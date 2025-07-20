@@ -674,6 +674,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5765744531878834545, guid: 4081400bebc35b6418b9b3db9eab7fbf, type: 3}
+      propertyPath: m_text
+      value: 'Escaped: 0/1'
+      objectReference: {fileID: 0}
     - target: {fileID: 8618814964146254413, guid: 4081400bebc35b6418b9b3db9eab7fbf, type: 3}
       propertyPath: m_Name
       value: EscapeCount
