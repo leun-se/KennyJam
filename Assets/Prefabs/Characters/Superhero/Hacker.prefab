@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 1020174523289471863}
   - component: {fileID: 2316448175546217996}
   m_Layer: 5
-  m_Name: Image
+  m_Name: InteractionBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -707,7 +707,7 @@ GameObject:
   - component: {fileID: 3924958282638266238}
   - component: {fileID: 3026371777839304400}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: InteractionText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1011,4 +1011,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 032065a792114bf4cb1efff6c5e49caa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeDuration: 1
+  exitMoveSpeed: 2
+  shrinkDuration: 1

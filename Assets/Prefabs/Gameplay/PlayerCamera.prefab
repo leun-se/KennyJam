@@ -156,10 +156,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookSensitivity: 0.1
   allowMouseLook: 1
-  minYaw: -35
-  maxYaw: 25
-  minPitch: -10
-  maxPitch: 20
+  minYaw: -50
+  maxYaw: 50
+  minPitch: -15
+  maxPitch: 50
 --- !u!114 &4659993206154448063
 MonoBehaviour:
   m_ObjectHideFlags: 0
