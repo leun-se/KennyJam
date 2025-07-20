@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(CapsuleCollider))]
 public class GuardVision : MonoBehaviour
 {
+    private Animator animator;
+
     [Header("Detection Settings")]
     public float viewDistance = 7f;
     public float viewAngle = 90f;
@@ -25,6 +27,7 @@ public class GuardVision : MonoBehaviour
 
     private void Start()
     {
+        animator = GetComponent<Animator>();
         guardCollider = GetComponent<CapsuleCollider>();
 
         if (exclamationPoint != null)
@@ -43,11 +46,19 @@ public class GuardVision : MonoBehaviour
         if (!isChasing)
         {
             DetectPlayer();
+            SetWalkingAnimation(false);
         }
         else
         {
             ChasePlayer();
+            SetWalkingAnimation(true);
         }
+    }
+
+    private void SetWalkingAnimation(bool walking)
+    {
+        if (animator != null)
+            animator.SetBool("isWalking", walking);
     }
 
     private void DetectPlayer()
@@ -57,10 +68,9 @@ public class GuardVision : MonoBehaviour
         foreach (Collider hit in hits)
         {
             Transform player = hit.transform;
-
             Vector3 dirToPlayer = (player.position - transform.position).normalized;
             float angle = Vector3.Angle(-transform.forward, dirToPlayer);
-            
+
             if (angle < viewAngle / 2f)
             {
                 float distance = Vector3.Distance(transform.position, player.position);
@@ -97,10 +107,10 @@ public class GuardVision : MonoBehaviour
         if (targetPlayer == null) return;
 
         Vector3 direction = (targetPlayer.position - transform.position).normalized;
-        transform.position += direction * chaseSpeed * Time.deltaTime;
 
         if (direction != Vector3.zero)
         {
+            // Use -direction if your model faces backward; otherwise just use direction
             Quaternion targetRotation = Quaternion.LookRotation(-direction);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
         }
@@ -112,6 +122,10 @@ public class GuardVision : MonoBehaviour
         {
             if (guardCollider.bounds.Intersects(playerCollider.bounds))
             {
+                // Stop walking animation before restarting
+                SetWalkingAnimation(false);
+                
+                // Restart level
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
         }
