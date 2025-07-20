@@ -50,7 +50,6 @@ public class GameManager : MonoBehaviour
         UpdateEscapeText();
         if (pauseMenu != null) pauseMenu.SetActive(false);
 
-        // Optional: find FreeLook if you didn't assign it in inspector
         if (freeLookCamera == null)
         {
             freeLookCamera = Camera.main.GetComponent<FreeLook>();
