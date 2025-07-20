@@ -521,6 +521,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5003054659431613604, guid: 0937b7b356359c6438b1c00b133ab359, type: 3}
+      propertyPath: m_ClearFlags
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5003054659431613604, guid: 0937b7b356359c6438b1c00b133ab359, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0.7169812
+      objectReference: {fileID: 0}
+    - target: {fileID: 5003054659431613604, guid: 0937b7b356359c6438b1c00b133ab359, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0.4412213
+      objectReference: {fileID: 0}
+    - target: {fileID: 5003054659431613604, guid: 0937b7b356359c6438b1c00b133ab359, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0.19953722
+      objectReference: {fileID: 0}
     - target: {fileID: 6814851478354797262, guid: 0937b7b356359c6438b1c00b133ab359, type: 3}
       propertyPath: m_Name
       value: Scene
