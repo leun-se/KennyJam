@@ -10,7 +10,11 @@ public class InteractionPromptUI : MonoBehaviour
     private void Start()
     {
         PlayerCamera = Camera.main;
-        UIPanel.SetActive(false);
+
+        if (UIPanel != null)
+            UIPanel.SetActive(false);
+        else
+            Debug.LogError("UIPanel is not assigned on " + gameObject.name);
     }
 
     private void LateUpdate()

@@ -5,13 +5,14 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     private Vector2 moveInput;
-
     public float moveSpeed = 3f;
     public float rotationSpeed = 10f;
 
     private Rigidbody rb;
     private Animator animator;
     private PlayerControls inputActions;
+
+    public bool isFrozen = false;
 
     private void Awake()
     {
@@ -36,6 +37,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (isFrozen) return;
+
         Vector3 move = new Vector3(moveInput.x, 0f, moveInput.y);
 
         if (move.magnitude > 0.1f)
@@ -56,5 +59,14 @@ public class PlayerController : MonoBehaviour
     private void RestartLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void Freeze()
+    {
+        isFrozen = true;
+        moveInput = Vector2.zero;
+
+        if (animator != null)
+            animator.SetFloat("Speed", 0f);
     }
 }

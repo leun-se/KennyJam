@@ -40,6 +40,18 @@ public class MindController : MonoBehaviour
         }
     }
 
+    public void LockInput()
+    {
+        if (CurrentControlledCharacter != null)
+        {
+            var playerMovement = CurrentControlledCharacter.GetComponent<PlayerController>();
+            if (playerMovement != null)
+            {
+                playerMovement.enabled = false;
+            }
+        }
+    }
+
     public bool IsPossessed(GameObject obj)
     {
         return obj == currentControlledCharacter;
@@ -70,7 +82,7 @@ public class MindController : MonoBehaviour
         if (possessionArrowPrefab != null)
         {
             currentArrow = Instantiate(possessionArrowPrefab, currentControlledCharacter.transform);
-            currentArrow.transform.localPosition = new Vector3(0, 1.8f, 0);
+            currentArrow.transform.localPosition = new Vector3(0, 1.6f, 0);
             currentArrow.transform.localRotation = Quaternion.identity;
         }
 
@@ -78,7 +90,7 @@ public class MindController : MonoBehaviour
         if (rend != null)
         {
             float size = rend.bounds.size.magnitude;
-            targetOrthoSize = Mathf.Clamp(size, 2.5f, 5f);
+            targetOrthoSize = Mathf.Clamp(size, 3f, 5f);
         }
         else
         {

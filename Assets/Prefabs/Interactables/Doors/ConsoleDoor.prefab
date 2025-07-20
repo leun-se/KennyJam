@@ -389,7 +389,7 @@ GameObject:
   - component: {fileID: 1315453585338279179}
   m_Layer: 0
   m_Name: ConsoleDoor
-  m_TagString: Untagged
+  m_TagString: Doors
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
