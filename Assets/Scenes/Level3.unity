@@ -1050,6 +1050,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 175749157762023558, guid: 3b73ea98f5b325b4c9f75759e351316b, type: 3}
+      propertyPath: m_TagString
+      value: Obstacles
+      objectReference: {fileID: 0}
     - target: {fileID: 362314214876660681, guid: 3b73ea98f5b325b4c9f75759e351316b, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -1118,9 +1122,17 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 4256575407375279429, guid: 3b73ea98f5b325b4c9f75759e351316b, type: 3}
+      propertyPath: m_TagString
+      value: Obstacles
+      objectReference: {fileID: 0}
     - target: {fileID: 4765545711386599971, guid: 3b73ea98f5b325b4c9f75759e351316b, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4765545711386599971, guid: 3b73ea98f5b325b4c9f75759e351316b, type: 3}
+      propertyPath: m_TagString
+      value: Obstacles
       objectReference: {fileID: 0}
     - target: {fileID: 5289845273078921369, guid: 3b73ea98f5b325b4c9f75759e351316b, type: 3}
       propertyPath: m_LocalScale.x
