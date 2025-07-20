@@ -4,6 +4,7 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private AudioClip LevelCompleteSoundClip;
     public static GameManager Instance;
 
     public int totalCharacters = 3;
@@ -42,6 +43,7 @@ public class GameManager : MonoBehaviour
 
     private void LevelComplete()
     {
+        SoundEffectsManager.instance.PlaySoundFXClip(LevelCompleteSoundClip, transform, 1f);
         Debug.Log("Level Complete!");
     }
 }

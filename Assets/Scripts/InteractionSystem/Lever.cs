@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 public class Lever : MonoBehaviour, IInteractable
 {
+    [SerializeField] private AudioClip leverPullSound;
     [SerializeField] private string _prompt;
     private bool _leverStatus;
     private Animator _anim;
@@ -21,6 +22,7 @@ public class Lever : MonoBehaviour, IInteractable
             _anim.SetBool("LeverStatus", true);
             _event.Invoke();
             _leverStatus = !_leverStatus;
+            SoundEffectsManager.instance.PlaySoundFXClip(leverPullSound, transform, 1f);
             return true;
         }
         else
@@ -28,6 +30,7 @@ public class Lever : MonoBehaviour, IInteractable
             Debug.Log(_leverStatus);
             _anim.SetBool("LeverStatus", false);
             _leverStatus = !_leverStatus;
+            SoundEffectsManager.instance.PlaySoundFXClip(leverPullSound, transform, 1f);
             return false;
         }
     }
