@@ -47,14 +47,29 @@ public class VisionConeRenderer : MonoBehaviour
 
     public void UpdateVertexDistances(float[] distances)
     {
-        if (distances.Length != vertexDistances.Length)
+        if (distances == null || distances.Length != segments + 1)
         {
-            Debug.LogWarning("Distances array length mismatch.");
             return;
         }
 
-        vertexDistances = distances;
-        GenerateConeMesh();
+        Mesh mesh = meshFilter.mesh;
+        Vector3[] vertices = mesh.vertices;
+
+        float angleStep = viewAngle / segments;
+        float startAngle = -viewAngle / 2f;
+
+        for (int i = 0; i <= segments; i++)
+        {
+            float angle = startAngle + i * angleStep;
+            float rad = angle * Mathf.Deg2Rad;
+
+            Vector3 dir = new Vector3(Mathf.Sin(rad), 0f, Mathf.Cos(rad));
+            vertices[i + 1] = dir * distances[i];
+        }
+
+        mesh.vertices = vertices;
+        mesh.RecalculateNormals();
+        meshFilter.mesh = mesh;
     }
 
     public void GenerateConeMesh()

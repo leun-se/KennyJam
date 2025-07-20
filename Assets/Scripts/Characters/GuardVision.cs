@@ -93,11 +93,10 @@ public class GuardVision : MonoBehaviour
             }
         }
     }
-
+    
     private void UpdateConeVisibility()
     {
-        if (coneRenderer == null)
-            return;
+        if (coneRenderer == null) return;
 
         int rayCount = coneRenderer.segments;
         float angleStep = viewAngle / rayCount;
@@ -105,12 +104,14 @@ public class GuardVision : MonoBehaviour
 
         float[] distances = new float[rayCount + 1];
 
+        Vector3 rayOrigin = transform.position + Vector3.up * 0.25f;
+
         for (int i = 0; i <= rayCount; i++)
         {
             float currentAngle = startAngle + i * angleStep;
-            Vector3 rayDirection = Quaternion.Euler(0, currentAngle, 0) * -transform.forward;
+            Vector3 rayDirection = transform.rotation * Quaternion.Euler(0f, currentAngle, 0f) * -Vector3.forward;
 
-            if (Physics.Raycast(transform.position, rayDirection, out RaycastHit hit, viewDistance, obstacleMask))
+            if (Physics.Raycast(rayOrigin, rayDirection, out RaycastHit hit, viewDistance, obstacleMask))
             {
                 distances[i] = hit.distance;
             }
@@ -144,16 +145,9 @@ public class GuardVision : MonoBehaviour
             {
                 float distance = Vector3.Distance(rayOrigin, player.position);
 
-                Debug.DrawRay(rayOrigin, dirToPlayer * distance, Color.red, 1f);
-                
                 if (Physics.Raycast(rayOrigin, dirToPlayer, out RaycastHit hitInfo, distance, obstacleMask))
                 {
-                    Debug.Log($"Blocked by: {hitInfo.collider.name} on layer {LayerMask.LayerToName(hitInfo.collider.gameObject.layer)}");
                     continue;
-                }
-                else
-                {
-                    Debug.Log("PLAYER VISIBLE! No obstacle blocking view.");
                 }
 
                 targetPlayer = player;
@@ -179,7 +173,6 @@ public class GuardVision : MonoBehaviour
             }
         }
     }
-
 
     private void ChasePlayer()
     {
