@@ -17,6 +17,11 @@ public class PlayerController : MonoBehaviour
 
     public bool isFrozen = false;
 
+    public Vector2 GetMoveInput()
+    {
+        return moveInput;
+    }
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
