@@ -48,7 +48,6 @@ public class GuardVision : MonoBehaviour
         {
             coneRenderer.viewAngle = viewAngle;
             coneRenderer.viewDistance = viewDistance;
-            coneRenderer.GenerateConeMesh();
         }
     }
 
@@ -60,7 +59,7 @@ public class GuardVision : MonoBehaviour
                 PatrolRotate();
             else
                 DetectPlayer();
-
+            UpdateConeVisibility();
             SetWalkingAnimation(false);
         }
         else
@@ -94,6 +93,36 @@ public class GuardVision : MonoBehaviour
             }
         }
     }
+    
+    private void UpdateConeVisibility()
+    {
+        if (coneRenderer == null) return;
+
+        int rayCount = coneRenderer.segments;
+        float angleStep = viewAngle / rayCount;
+        float startAngle = -viewAngle / 2f;
+
+        float[] distances = new float[rayCount + 1];
+
+        Vector3 rayOrigin = transform.position + Vector3.up * 0.25f;
+
+        for (int i = 0; i <= rayCount; i++)
+        {
+            float currentAngle = startAngle + i * angleStep;
+            Vector3 rayDirection = transform.rotation * Quaternion.Euler(0f, currentAngle, 0f) * -Vector3.forward;
+
+            if (Physics.Raycast(rayOrigin, rayDirection, out RaycastHit hit, viewDistance, obstacleMask))
+            {
+                distances[i] = hit.distance;
+            }
+            else
+            {
+                distances[i] = viewDistance;
+            }
+        }
+
+        coneRenderer.UpdateVertexDistances(distances);
+    }
 
     private void SetWalkingAnimation(bool walking)
     {
@@ -108,36 +137,39 @@ public class GuardVision : MonoBehaviour
         foreach (Collider hit in hits)
         {
             Transform player = hit.transform;
-            Vector3 dirToPlayer = (player.position - transform.position).normalized;
+            Vector3 rayOrigin = transform.position + Vector3.up * 0.25f;
+            Vector3 dirToPlayer = (player.position - rayOrigin).normalized;
             float angle = Vector3.Angle(-transform.forward, dirToPlayer);
 
             if (angle < viewAngle / 2f)
             {
-                float distance = Vector3.Distance(transform.position, player.position);
+                float distance = Vector3.Distance(rayOrigin, player.position);
 
-                if (!Physics.Raycast(transform.position, dirToPlayer, distance, obstacleMask))
+                if (Physics.Raycast(rayOrigin, dirToPlayer, out RaycastHit hitInfo, distance, obstacleMask))
                 {
-                    targetPlayer = player;
-                    isChasing = true;
-
-                    if (!playerFrozen)
-                    {
-                        PlayerController controller = player.GetComponent<PlayerController>();
-                        if (controller != null)
-                        {
-                            controller.Freeze();
-                            playerFrozen = true;
-                        }
-                    }
-
-                    if (exclamationPoint != null)
-                        exclamationPoint.SetActive(true);
-
-                    if (coneRenderer != null)
-                        coneRenderer.gameObject.SetActive(false);
-
-                    break;
+                    continue;
                 }
+
+                targetPlayer = player;
+                isChasing = true;
+
+                if (!playerFrozen)
+                {
+                    PlayerController controller = player.GetComponent<PlayerController>();
+                    if (controller != null)
+                    {
+                        controller.Freeze();
+                        playerFrozen = true;
+                    }
+                }
+
+                if (exclamationPoint != null)
+                    exclamationPoint.SetActive(true);
+
+                if (coneRenderer != null)
+                    coneRenderer.gameObject.SetActive(false);
+
+                break;
             }
         }
     }
@@ -150,7 +182,6 @@ public class GuardVision : MonoBehaviour
 
         if (direction != Vector3.zero)
         {
-            // Use -direction if your model faces backward; otherwise just use direction
             Quaternion targetRotation = Quaternion.LookRotation(-direction);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
         }
@@ -162,10 +193,8 @@ public class GuardVision : MonoBehaviour
         {
             if (guardCollider.bounds.Intersects(playerCollider.bounds))
             {
-                // Stop walking animation before restarting
                 SetWalkingAnimation(false);
-                
-                // Restart level
+
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
         }
