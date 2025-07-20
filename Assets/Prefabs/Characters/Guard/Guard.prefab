@@ -99,7 +99,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e4ee23b32d2b0c44971b2f2457b686a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewDistance: 1
+  footstepSound: {fileID: 0}
+  exclamaitionSoundClip: {fileID: 8300000, guid: e3d7c8d38bc3598439ab9171c6cfd92e, type: 3}
+  viewDistance: 1.5
   viewAngle: 90
   playerLayer:
     serializedVersion: 2
@@ -107,14 +109,12 @@ MonoBehaviour:
   obstacleMask:
     serializedVersion: 2
     m_Bits: 128
-  patrolRotate: 0
-  rotationSpeed: 2
-  waitTimeAtEachRotation: 2
+  patrolRotate: 1
+  rotationSpeed: 3
+  waitTimeAtEachRotation: 1
   patrolAngles:
   - 0
-  - 90
   - 180
-  - 270
   exclamationPoint: {fileID: 7185962178501414250}
   coneRenderer: {fileID: 2083569050756801637}
   chaseSpeed: 3
