@@ -3514,7 +3514,7 @@ PrefabInstance:
     - target: {fileID: 2879042659893589030, guid: 9bdc3ad948b09f1439a92bc49cad8a53, type: 3}
       propertyPath: LevelCompleteSoundClip
       value: 
-      objectReference: {fileID: 8300000, guid: 4ead24fc998c61241a56fcc48a30ff2c, type: 3}
+      objectReference: {fileID: 8300000, guid: 351b417c8996e7a4888dfe6d1cba5f50, type: 3}
     - target: {fileID: 3681206640645333923, guid: 9bdc3ad948b09f1439a92bc49cad8a53, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.36929
