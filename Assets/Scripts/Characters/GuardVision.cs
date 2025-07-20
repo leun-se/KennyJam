@@ -154,6 +154,7 @@ public class GuardVision : MonoBehaviour
 
                 targetPlayer = player;
                 isChasing = true;
+                SoundEffectsManager.instance.PlaySoundFXClip(exclamaitionSoundClip, transform, 1f);
 
                 if (!playerFrozen)
                 {
