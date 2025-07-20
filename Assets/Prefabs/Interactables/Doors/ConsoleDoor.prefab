@@ -255,7 +255,7 @@ GameObject:
   - component: {fileID: 4692892834057933110}
   - component: {fileID: 2557455822822316524}
   m_Layer: 6
-  m_Name: console
+  m_Name: Console
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -362,7 +362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09570c10fe2d6b649b054544558b49a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prompt: Use Console (F)
+  _prompt: Use Console (F) *Requires Hacker*
   _event:
     m_PersistentCalls:
       m_Calls:

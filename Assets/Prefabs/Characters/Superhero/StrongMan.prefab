@@ -472,7 +472,7 @@ GameObject:
   - component: {fileID: 1969345892265665938}
   - component: {fileID: 3414930084296090787}
   m_Layer: 5
-  m_Name: Canvas (1)
+  m_Name: InteractionPrompt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -586,7 +586,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6625154482956786854}
   m_Layer: 0
-  m_Name: InteractionPoint (1)
+  m_Name: InteractionPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
