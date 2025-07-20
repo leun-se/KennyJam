@@ -541,6 +541,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scene
       objectReference: {fileID: 0}
+    - target: {fileID: 8301311565093869896, guid: 0937b7b356359c6438b1c00b133ab359, type: 3}
+      propertyPath: uiHint
+      value: 
+      objectReference: {fileID: 6209159272078597754}
     - target: {fileID: 8664007158303275822, guid: 0937b7b356359c6438b1c00b133ab359, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1296,6 +1300,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df73e665e9b2b2b42b67d141796f7c5a, type: 3}
+--- !u!1 &6209159272078597754 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6239738635324583178, guid: a76d058df7532cd40a0185c1b4e9d94b, type: 3}
+  m_PrefabInstance: {fileID: 43490045556597714}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
