@@ -345,6 +345,7 @@ GameObject:
   - component: {fileID: 5731485480258168656}
   - component: {fileID: 8876903983970623020}
   - component: {fileID: 2331656243997369404}
+  - component: {fileID: 5559753664912185455}
   m_Layer: 3
   m_Name: SuperheroBase 1
   m_TagString: Possessable
@@ -463,6 +464,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 3
   rotationSpeed: 10
+  isFrozen: 0
 --- !u!95 &8876903983970623020
 Animator:
   serializedVersion: 7
@@ -504,6 +506,19 @@ MonoBehaviour:
     m_Bits: 64
   _interactionPromptUI: {fileID: 5204572387889672924}
   _numFound: 0
+--- !u!114 &5559753664912185455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6941963375164192903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 032065a792114bf4cb1efff6c5e49caa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeDuration: 1
 --- !u!1 &7116574821606155666
 GameObject:
   m_ObjectHideFlags: 0

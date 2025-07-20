@@ -522,6 +522,7 @@ GameObject:
   - component: {fileID: 2834195679846063702}
   - component: {fileID: 4647173580394698652}
   - component: {fileID: 8587957646041236140}
+  - component: {fileID: 6621962879351199665}
   m_Layer: 3
   m_Name: NormalHuman
   m_TagString: Possessable
@@ -661,6 +662,19 @@ MonoBehaviour:
     m_Bits: 64
   _interactionPromptUI: {fileID: 1555808926413556369}
   _numFound: 0
+--- !u!114 &6621962879351199665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7169622294615587116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 032065a792114bf4cb1efff6c5e49caa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeDuration: 1
 --- !u!1 &7515183000323842501
 GameObject:
   m_ObjectHideFlags: 0

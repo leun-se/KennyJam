@@ -846,6 +846,7 @@ GameObject:
   - component: {fileID: 3404176875109302085}
   - component: {fileID: 7322124593370686820}
   - component: {fileID: 8007901940022138386}
+  - component: {fileID: 3874621953998173921}
   m_Layer: 3
   m_Name: Hacker
   m_TagString: Possessable
@@ -998,3 +999,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanHack: 1
+--- !u!114 &3874621953998173921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9117571681790410064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 032065a792114bf4cb1efff6c5e49caa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeDuration: 1
