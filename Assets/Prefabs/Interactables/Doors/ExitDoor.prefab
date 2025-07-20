@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1414409017064303093}
   - component: {fileID: 5488182910944901976}
   m_Layer: 0
-  m_Name: door-brown (1)
+  m_Name: door-brown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -265,7 +265,7 @@ GameObject:
   - component: {fileID: 5225257415247414556}
   - component: {fileID: 3276127704953841532}
   m_Layer: 0
-  m_Name: wall-doorway (1)
+  m_Name: wall-doorway
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
