@@ -59,8 +59,8 @@ public class GuardVision : MonoBehaviour
             Transform player = hit.transform;
 
             Vector3 dirToPlayer = (player.position - transform.position).normalized;
-            float angle = Vector3.Angle(-transform.forward, dirToPlayer); // if guard is rotated
-
+            float angle = Vector3.Angle(-transform.forward, dirToPlayer);
+            
             if (angle < viewAngle / 2f)
             {
                 float distance = Vector3.Distance(transform.position, player.position);
@@ -97,17 +97,16 @@ public class GuardVision : MonoBehaviour
         if (targetPlayer == null) return;
 
         Vector3 direction = (targetPlayer.position - transform.position).normalized;
+        transform.position += direction * chaseSpeed * Time.deltaTime;
 
-        Vector3 lookDirection = (targetPlayer.position - transform.position).normalized;
-        if (lookDirection != Vector3.zero)
+        if (direction != Vector3.zero)
         {
-            Quaternion targetRotation = Quaternion.LookRotation(lookDirection);
+            Quaternion targetRotation = Quaternion.LookRotation(-direction);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
         }
 
         transform.position += direction * chaseSpeed * Time.deltaTime;
 
-        // Check collider overlap instead of distance
         Collider playerCollider = targetPlayer.GetComponent<Collider>();
         if (guardCollider != null && playerCollider != null)
         {
