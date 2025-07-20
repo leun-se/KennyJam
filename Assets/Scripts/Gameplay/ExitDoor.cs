@@ -8,19 +8,21 @@ public class ExitDoor : MonoBehaviour
         {
             Debug.Log($"{other.name} exited!");
 
-            var mind = FindObjectOfType<MindController>();
+            var mind = FindFirstObjectByType<MindController>();
             if (mind != null && mind.IsPossessed(other.gameObject))
             {
                 mind.ReturnControlToMind();
             }
 
-            var exit = other.GetComponent<ExitAndShrink>();
+            ExitAndShrink exit = other.GetComponent<ExitAndShrink>();
             if (exit != null)
             {
-                Vector3 doorDir = transform.forward;
-                doorDir.y = 0f;
-                doorDir.Normalize();
-                exit.StartExit(doorDir);
+                Vector3 doorDirection = transform.forward;
+                exit.StartExit(doorDirection);
+            }
+            else
+            {
+                other.gameObject.SetActive(false);
             }
 
             GameManager.Instance?.RegisterEscape();

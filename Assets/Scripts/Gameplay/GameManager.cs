@@ -1,37 +1,47 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    [Header("Escape Tracking")]
     public int totalCharacters = 3;
     private int escapedCharacters = 0;
 
+    public TextMeshProUGUI escapeText;
     private void Awake()
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
     }
 
+    private void Start()
+    {
+        UpdateEscapeText();
+    }
+
     public void RegisterEscape()
     {
         escapedCharacters++;
-
-        Debug.Log($"Escaped: {escapedCharacters}/{totalCharacters}");
+        UpdateEscapeText();
 
         if (escapedCharacters >= totalCharacters)
         {
-            Debug.Log("All characters escaped!");
-            CompleteLevel();
+            LevelComplete();
         }
     }
 
-    private void CompleteLevel()
+    private void UpdateEscapeText()
+    {
+        if (escapeText != null)
+        {
+            escapeText.text = $"Escaped: {escapedCharacters} / {totalCharacters}";
+        }
+    }
+
+    private void LevelComplete()
     {
         Debug.Log("Level Complete!");
-
-        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
