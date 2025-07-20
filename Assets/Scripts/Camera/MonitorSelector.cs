@@ -13,6 +13,7 @@ public class MonitorSelector : MonoBehaviour
     public float zoomSpeed = 5f;
 
     private GameObject currentLookedAtMonitor;
+    private GameObject currentLevelNameUI;
     private Color[] originalColors;
     private Renderer[] currentRenderers;
     private float originalFOV;
@@ -51,11 +52,15 @@ public class MonitorSelector : MonoBehaviour
                         if (currentRenderers[i].material.HasProperty("_Color"))
                         {
                             originalColors[i] = currentRenderers[i].material.color;
-                            currentRenderers[i].material.color = Color.violet;
+                            currentRenderers[i].material.color = Color.magenta;
                         }
                     }
 
                     currentLookedAtMonitor = monitor;
+
+                    currentLevelNameUI = monitor.transform.Find("LevelName")?.gameObject;
+                    if (currentLevelNameUI != null)
+                        currentLevelNameUI.SetActive(true);
                 }
 
                 isZooming = true;
@@ -95,6 +100,12 @@ public class MonitorSelector : MonoBehaviour
                     currentRenderers[i].material.color = originalColors[i];
                 }
             }
+        }
+
+        if (currentLevelNameUI != null)
+        {
+            currentLevelNameUI.SetActive(false);
+            currentLevelNameUI = null;
         }
 
         currentLookedAtMonitor = null;

@@ -5,13 +5,13 @@ using System.Collections;
 public class FreeLook : MonoBehaviour
 {
     public float lookSensitivity = 0.1f;
-    private float xRotation;
-    private float yRotation;
     public bool allowMouseLook = true;
     public float minYaw = -35f;
     public float maxYaw = 25f;
     public float minPitch = -10f;
     public float maxPitch = 20f;
+    public float xRotation;
+    public float yRotation;
     private float initialYaw;
     private float initialPitch;
     private Camera cam;
@@ -20,9 +20,6 @@ public class FreeLook : MonoBehaviour
     void Start()
     {
         cam = GetComponent<Camera>();
-
-        xRotation = 35f;
-        yRotation = -40f;
 
         transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0f);
 
