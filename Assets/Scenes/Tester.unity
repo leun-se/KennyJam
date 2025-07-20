@@ -874,10 +874,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4985267589599179358, guid: 9d7c2278f8c275f4181a973ed4f08253, type: 3}
-      propertyPath: leverPullSound
-      value: 
-      objectReference: {fileID: 8300000, guid: dafa074431ef1a74b83f5abb17c57840, type: 3}
     - target: {fileID: 5963159470859891044, guid: 9d7c2278f8c275f4181a973ed4f08253, type: 3}
       propertyPath: m_Name
       value: LeverDoor

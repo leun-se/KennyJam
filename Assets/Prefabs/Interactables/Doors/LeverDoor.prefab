@@ -209,6 +209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44394d0b5a60d640a2e5dff9879c165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  leverPullSound: {fileID: 8300000, guid: dafa074431ef1a74b83f5abb17c57840, type: 3}
   _prompt: Pull Lever (F)
   _event:
     m_PersistentCalls:
@@ -277,7 +278,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.1290003, y: -0.063, z: 0.02799988}
-  m_LocalScale: {x: 2.601576, y: 1.7830889, z: 1.7830889}
+  m_LocalScale: {x: 3.5907063, y: 1.7830889, z: 1.7830889}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4543065015422772861}
@@ -407,7 +408,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.70745796, z: -0, w: 0.7067555}
   m_LocalPosition: {x: 0.151, y: -0.050145686, z: 0.112}
-  m_LocalScale: {x: 1.0354, y: 1.0078486, z: 1.0354}
+  m_LocalScale: {x: 1.2275703, y: 1.1949054, z: 1.3784387}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4543065015422772861}
