@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    //private footsteps steps = new footsteps();
     private Vector2 moveInput;
     public float moveSpeed = 3f;
     public float rotationSpeed = 10f;
@@ -16,6 +15,28 @@ public class PlayerController : MonoBehaviour
     private PlayerControls inputActions;
 
     public bool isFrozen = false;
+
+    [SerializeField] private AudioClip footstepClip;
+    [SerializeField] private float stepInterval = 0.5f; // time between steps
+
+    private float stepTimer;
+
+    private void Update()
+    {
+        if (moveInput.magnitude > 0.1f && !isFrozen)
+        {
+            stepTimer -= Time.deltaTime;
+            if (stepTimer <= 0f)
+            {
+                SoundEffectsManager.instance.PlaySoundFXClip(footstepClip, transform, 0.5f);
+                stepTimer = stepInterval;
+            }
+        }
+        else
+        {
+            stepTimer = 0f; // reset when not walking
+        }
+    }
 
     public Vector2 GetMoveInput()
     {
