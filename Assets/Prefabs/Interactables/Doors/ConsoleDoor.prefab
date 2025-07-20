@@ -362,6 +362,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09570c10fe2d6b649b054544558b49a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  consoleActivationSoundClip: {fileID: 8300000, guid: 7a004355081d53f4fa4a263e832648a3, type: 3}
+  consoleNotActivatedSoundClip: {fileID: 8300000, guid: 739c4e0f5bb0b224da58b495428cd7b6, type: 3}
   _prompt: Use Console (F) *Requires Hacker*
   _event:
     m_PersistentCalls:
