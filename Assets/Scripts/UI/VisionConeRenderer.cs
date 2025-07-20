@@ -10,39 +10,50 @@ public class VisionConeRenderer : MonoBehaviour
 
     private MeshFilter meshFilter;
 
-    public float ViewAngle
-    {
-        get => viewAngle;
-        set
-        {
-            if (viewAngle != value)
-            {
-                viewAngle = value;
-                GenerateConeMesh();
-            }
-        }
-    }
+    private float[] vertexDistances;
 
-    public float ViewDistance
-    {
-        get => viewDistance;
-        set
-        {
-            if (viewDistance != value)
-            {
-                viewDistance = value;
-                GenerateConeMesh();
-            }
-        }
-    }
+    private float lastViewAngle;
+    private float lastViewDistance;
+    private Quaternion lastRotation;
 
     void Awake()
     {
         meshFilter = GetComponent<MeshFilter>();
+        vertexDistances = new float[segments + 1];
     }
 
     void Start()
     {
+        lastViewAngle = viewAngle;
+        lastViewDistance = viewDistance;
+        lastRotation = transform.rotation;
+
+        for (int i = 0; i < vertexDistances.Length; i++)
+            vertexDistances[i] = viewDistance;
+
+        GenerateConeMesh();
+    }
+
+    void Update()
+    {
+        if (viewAngle != lastViewAngle || viewDistance != lastViewDistance || transform.rotation != lastRotation)
+        {
+            GenerateConeMesh();
+            lastViewAngle = viewAngle;
+            lastViewDistance = viewDistance;
+            lastRotation = transform.rotation;
+        }
+    }
+
+    public void UpdateVertexDistances(float[] distances)
+    {
+        if (distances.Length != vertexDistances.Length)
+        {
+            Debug.LogWarning("Distances array length mismatch.");
+            return;
+        }
+
+        vertexDistances = distances;
         GenerateConeMesh();
     }
 
@@ -63,7 +74,11 @@ public class VisionConeRenderer : MonoBehaviour
             float angle = startAngle + i * angleStep;
             float rad = angle * Mathf.Deg2Rad;
 
-            Vector3 point = new Vector3(Mathf.Sin(rad), 0f, Mathf.Cos(rad)) * viewDistance;
+            float dist = viewDistance;
+            if (i < vertexDistances.Length)
+                dist = vertexDistances[i];
+
+            Vector3 point = new Vector3(Mathf.Sin(rad), 0f, Mathf.Cos(rad)) * dist;
             vertices[i + 1] = point;
         }
 

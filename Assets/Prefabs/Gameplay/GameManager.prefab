@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalCharacters: 3
+  escapeText: {fileID: 0}
