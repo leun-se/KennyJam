@@ -14,7 +14,6 @@ public class MonitorSelector : MonoBehaviour
 
     private GameObject currentLookedAtMonitor;
     private GameObject currentLevelNameUI;
-    private GameObject currentStarObject;
     private Color[] originalColors;
     private Renderer[] currentRenderers;
     private float originalFOV;
@@ -60,41 +59,26 @@ public class MonitorSelector : MonoBehaviour
                     currentLookedAtMonitor = monitor;
 
                     currentLevelNameUI = monitor.transform.Find("LevelName")?.gameObject;
-                    currentStarObject = monitor.transform.Find("StarIcon")?.gameObject;
-
-                    string sceneName = monitor.GetComponent<MonitorLevel>()?.sceneName;
-                    bool completed = false;
-                    if (!string.IsNullOrEmpty(sceneName))
-                    {
-                        completed = LevelProgress.IsCompleted(sceneName);
-                    }
-
-                    if (completed)
-                    {
-                        if (currentStarObject != null) currentStarObject.SetActive(true);
-                        if (currentLevelNameUI != null) currentLevelNameUI.SetActive(false);
-                    }
-                    else
-                    {
-                        if (currentStarObject != null) currentStarObject.SetActive(false);
-                        if (currentLevelNameUI != null) currentLevelNameUI.SetActive(true);
-                    }
+                    if (currentLevelNameUI != null)
+                        currentLevelNameUI.SetActive(true);
                 }
 
                 isZooming = true;
 
-                if (Keyboard.current.eKey.wasPressedThisFrame || Mouse.current.leftButton.wasPressedThisFrame)
+                MonitorLevel level = monitor.GetComponent<MonitorLevel>();
+                if (level != null)
                 {
-                    MonitorLevel level = monitor.GetComponent<MonitorLevel>();
-                    if (level != null)
+                    bool isCompleted = LevelProgress.IsCompleted(level.sceneName);
+
+                    if (!isCompleted && (Keyboard.current.eKey.wasPressedThisFrame || Mouse.current.leftButton.wasPressedThisFrame))
                     {
                         Debug.Log("Loading scene: " + level.sceneName);
                         SceneManager.LoadScene(level.sceneName);
                     }
-                    else
-                    {
-                        Debug.LogWarning("MonitorLevel component missing on: " + monitor.name);
-                    }
+                }
+                else
+                {
+                    Debug.LogWarning("MonitorLevel component missing on: " + monitor.name);
                 }
 
                 return;
@@ -124,12 +108,6 @@ public class MonitorSelector : MonoBehaviour
         {
             currentLevelNameUI.SetActive(false);
             currentLevelNameUI = null;
-        }
-
-        if (currentStarObject != null)
-        {
-            currentStarObject.SetActive(false);
-            currentStarObject = null;
         }
 
         currentLookedAtMonitor = null;
