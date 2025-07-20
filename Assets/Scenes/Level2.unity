@@ -1040,14 +1040,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: StrongMan
       objectReference: {fileID: 0}
-    - target: {fileID: 4491136198232566297, guid: 516f6fdf1c8bf0745a1ee05fba4b76e5, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6625154482956786854, guid: 516f6fdf1c8bf0745a1ee05fba4b76e5, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.04
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
